@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "bun:test";
 
 import { CliError, type CliErrorMapper, cliError, normalizeCliError } from "./errors";
 

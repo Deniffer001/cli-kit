@@ -12,16 +12,24 @@
   "keywords": ["cli", "argc", "agent", "bun", "valibot"],
   "exports": {
     "./errors": "./src/errors.ts",
-    "./output": "./src/output.ts"
+    "./output": "./src/output.ts",
+    "./schema-selector": "./src/schema-selector.ts",
+    "./continuation": "./src/continuation.ts",
+    "./dataset-pagination": "./src/dataset-pagination.ts"
   },
   "files": ["src", "!src/**/*.test.ts"],
   "scripts": {
-    "test": "vitest run",
+    "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
+  "peerDependencies": {
+    "argc": "*",
+    "valibot": "^1.4.1"
+  },
   "devDependencies": {
+    "@types/bun": "^1.3.14",
     "@types/node": "^25.9.3",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "argc": "github:ethan-huo/argc#v5.0.1",
+    "typescript": "^6.0.3"
   }
 }

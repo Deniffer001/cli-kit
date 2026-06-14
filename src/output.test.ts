@@ -1,14 +1,14 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, spyOn } from "bun:test";
 
 import { cliError } from "./errors";
 import { createOutputService } from "./output";
 
 function captureStdout() {
   const writes: string[] = [];
-  const spy = vi.spyOn(process.stdout, "write").mockImplementation((chunk: unknown) => {
+  const spy = spyOn(process.stdout, "write").mockImplementation(((chunk: string | Uint8Array) => {
     writes.push(String(chunk));
     return true;
-  });
+  }) as typeof process.stdout.write);
   return { writes, restore: () => spy.mockRestore() };
 }
 
