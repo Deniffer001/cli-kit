@@ -1,0 +1,27 @@
+{
+  "name": "@deniffer/cli-kit",
+  "version": "0.0.0",
+  "description": "argc-based runtime for agent-drivable admin/operator CLIs — typed errors, JSON-first output, jq-style schema selectors, cursor paging, and a pluggable backend client.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Deniffer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deniffer001/cli-kit.git"
+  },
+  "keywords": ["cli", "argc", "agent", "bun", "valibot"],
+  "exports": {
+    "./errors": "./src/errors.ts",
+    "./output": "./src/output.ts"
+  },
+  "files": ["src", "!src/**/*.test.ts"],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}
