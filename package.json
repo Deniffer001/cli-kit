@@ -1,6 +1,6 @@
 {
   "name": "@deniffer/cli-kit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "argc-based runtime for agent-drivable admin/operator CLIs — typed errors, JSON-first output, jq-style schema selectors, cursor paging, and a pluggable backend client.",
   "type": "module",
   "license": "MIT",
