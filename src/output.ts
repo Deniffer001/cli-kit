@@ -57,12 +57,19 @@ export function createOutputService(options: OutputOptions = {}): OutputService 
 
     error(error: unknown, human?: string[]) {
       const normalized = normalizeCliError(error, errorMappers);
+      const envelope: Output<never> = {
+        ok: false,
+        error: {
+          code: normalized.code,
+          message: normalized.message,
+          ...(normalized.hint ? { hint: normalized.hint } : {}),
+        },
+      };
 
+      // Errors always go to stderr (success → stdout), matching the Unix split so
+      // agents can read data on stdout and drop diagnostics with `2>` independently.
       if (!pretty) {
-        printJson({
-          ok: false,
-          error: { code: normalized.code, message: normalized.message, hint: normalized.hint },
-        });
+        process.stderr.write(`${JSON.stringify(envelope, null, 2)}\n`);
         return;
       }
 

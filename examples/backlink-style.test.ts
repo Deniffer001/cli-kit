@@ -31,9 +31,9 @@ const backlinkErrorMapper: CliErrorMapper = (error) => {
   return null;
 };
 
-function captureStdout() {
+function capture(stream: "stdout" | "stderr") {
   const writes: string[] = [];
-  const spy = spyOn(process.stdout, "write").mockImplementation(((chunk: string | Uint8Array) => {
+  const spy = spyOn(process[stream], "write").mockImplementation(((chunk: string | Uint8Array) => {
     writes.push(String(chunk));
     return true;
   }) as typeof process.stdout.write);
@@ -41,13 +41,13 @@ function captureStdout() {
 }
 
 describe("backlink-style consumer (integration proof)", () => {
-  it("runs a paginated dataset handler end-to-end and emits a JSON envelope", async () => {
+  it("runs a paginated dataset handler end-to-end and emits a JSON envelope on stdout", async () => {
     const services = createCliServices({
       context: { pretty: false },
       adapter: backlinkAdapter,
       errorMappers: [backlinkErrorMapper],
     });
-    const out = captureStdout();
+    const out = capture("stdout");
 
     await runCliCommand(services, async (handler) => {
       const rows = handler.getClient().listBacklinks("example.com");
@@ -68,14 +68,14 @@ describe("backlink-style consumer (integration proof)", () => {
     expect(result.data.page.continuation.argv[0]).toBe("backlink");
   });
 
-  it("maps a provider 401 to auth_error through the error seam", async () => {
+  it("maps a provider 401 to auth_error through the error seam (on stderr)", async () => {
     const previousExitCode = process.exitCode;
     const services = createCliServices({
       context: {},
       adapter: backlinkAdapter,
       errorMappers: [backlinkErrorMapper],
     });
-    const out = captureStdout();
+    const out = capture("stderr");
 
     await runCliCommand(services, async () => {
       throw Object.assign(new Error("unauthorized"), { status: 401 });
