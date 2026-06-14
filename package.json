@@ -18,7 +18,8 @@
     "./dataset-pagination": "./src/dataset-pagination.ts",
     "./client": "./src/client.ts",
     "./services": "./src/services.ts",
-    "./command": "./src/command.ts"
+    "./command": "./src/command.ts",
+    "./profile": "./src/profile.ts"
   },
   "files": ["src", "!src/**/*.test.ts"],
   "scripts": {
@@ -34,5 +35,8 @@
     "@types/node": "^25.9.3",
     "argc": "github:ethan-huo/argc#v5.0.1",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }
