@@ -19,7 +19,8 @@
     "./client": "./src/client.ts",
     "./services": "./src/services.ts",
     "./command": "./src/command.ts",
-    "./profile": "./src/profile.ts"
+    "./profile": "./src/profile.ts",
+    "./schema-discovery": "./src/schema-discovery.ts"
   },
   "files": ["src", "!src/**/*.test.ts"],
   "scripts": {
