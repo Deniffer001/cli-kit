@@ -15,7 +15,10 @@
     "./output": "./src/output.ts",
     "./schema-selector": "./src/schema-selector.ts",
     "./continuation": "./src/continuation.ts",
-    "./dataset-pagination": "./src/dataset-pagination.ts"
+    "./dataset-pagination": "./src/dataset-pagination.ts",
+    "./client": "./src/client.ts",
+    "./services": "./src/services.ts",
+    "./command": "./src/command.ts"
   },
   "files": ["src", "!src/**/*.test.ts"],
   "scripts": {
